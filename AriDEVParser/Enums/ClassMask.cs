@@ -3,7 +3,7 @@ using System;
 namespace AriDEVParser.Enums
 {
     [Flags]
-    public enum ClassMask
+    public enum ClassMask // 5.4.1 17538
     {
         None = 0x0000,
         Warrior = 0x0001,
@@ -15,6 +15,7 @@ namespace AriDEVParser.Enums
         Shaman = 0x0040,
         Mage = 0x0080,
         Warlock = 0x0100,
+		Monk = 0x0200,
         Druid = 0x0400,
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AriDEVParser.Enums
 {
-    public enum Class : byte
+    public enum Class : byte // 5.4.1 17538
     {
         Warrior = 1,
         Paladin = 2,
@@ -16,7 +16,7 @@ namespace AriDEVParser.Enums
         Shaman = 7,
         Mage = 8,
         Warlock = 9,
-        Unknown = 10,
+        Monk = 10,
         Druid = 11
     }
 }
