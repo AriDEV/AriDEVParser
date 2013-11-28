@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual C# Express 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriDEVParser", "AriDEVParser\AriDEVParser.csproj", "{2E7D360F-9B9F-46B1-9AEE-473C30570AA0}"
 EndProject
 Global

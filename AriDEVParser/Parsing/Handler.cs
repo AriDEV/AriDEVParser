@@ -27,61 +27,38 @@ namespace AriDEVParser.Parsing
                 {
                     if (!method.IsPublic)
                         continue;
-                    DoAttributes(method, typeof(ParserAttribute), Handlers);
-                    DoAttributes(method, typeof(SpecialParserAttribute), SpecialHandlers);
+
+                    var attrs = (ParserAttribute[])method.GetCustomAttributes(typeof(ParserAttribute),
+                        false);
+
+                    if (attrs.Length <= 0)
+                        continue;
+
+                    var parms = method.GetParameters();
+
+                    if (parms.Length <= 0)
+                        continue;
+
+                    if (parms[0].ParameterType != typeof(Packet))
+                        continue;
+
+                    foreach (var attr in attrs)
+                    {
+                        var opc = attr.Opcode;
+
+                        var del = (Action<Packet>)Delegate.CreateDelegate(typeof(Action<Packet>), method);
+
+                        Handlers[opc] = del;
+                    }
                 }
             }
         }
 
-        private static bool DoAttributes(MethodInfo method, Type type, Dictionary<int, Action<Packet>> handlers)
-        {
-            var tmp = method.GetCustomAttributes(type, false);
-
-            object[] attrs;
-            if (type == typeof(ParserAttribute))
-                attrs = (ParserAttribute[])tmp;
-            else if (type == typeof(SpecialParserAttribute))
-                attrs = (SpecialParserAttribute[])tmp;
-            else
-                return false;
-
-            if (attrs.Length <= 0)
-                return false;
-
-            var parms = method.GetParameters();
-
-            if (parms.Length <= 0)
-                return false;
-
-            if (parms[0].ParameterType != typeof(Packet))
-                return false;
-
-            foreach (var attr in attrs)
-            {
-                int index;
-                if (type == typeof(ParserAttribute))
-                    index = ((ParserAttribute)attr).index;
-                else //if (type == typeof(SpecialParserAttribute))
-                {
-                    index = ((SpecialParserAttribute)attr).Index;
-                    SpecialHandlerNames[index] = ((SpecialParserAttribute)attr).Name;
-                }
-
-                var del = (Action<Packet>)Delegate.CreateDelegate(typeof(Action<Packet>), method);
-
-                handlers[index] = del;
-            }
-            return true;
-        }
-
-        public static void InitializeLogFile(string file, string nodump, string nohex, string skiplarge)
+        public static void InitializeLogFile(string file, string nodump)
         {
             _noDump = nodump.Equals(bool.TrueString, StringComparison.InvariantCultureIgnoreCase);
             if (_noDump)
                 return;
-
-            _noHex = nohex.Equals(bool.TrueString, StringComparison.InvariantCultureIgnoreCase);
-            _skipLarge = skiplarge.Equals(bool.TrueString, StringComparison.InvariantCultureIgnoreCase);
 
             File.Delete(file);
             _file = new StreamWriter(file, true);
@@ -90,20 +67,10 @@ namespace AriDEVParser.Parsing
 
         private static bool _noDump;
 
-        private static bool _noHex;
-
-        private static bool _skipLarge;
-
         private static StreamWriter _file;
 
-        private static readonly Dictionary<int, Action<Packet>> Handlers =
-            new Dictionary<int, Action<Packet>>();
-
-        private static readonly Dictionary<int, Action<Packet>> SpecialHandlers =
-            new Dictionary<int, Action<Packet>>();
-
-        private static readonly Dictionary<int, string> SpecialHandlerNames =
-            new Dictionary<int, string>();
+        private static readonly Dictionary<Opcode, Action<Packet>> Handlers =
+            new Dictionary<Opcode, Action<Packet>>();
 
         public static void WriteToFile()
         {
@@ -118,94 +85,20 @@ namespace AriDEVParser.Parsing
         public static void Parse(Packet packet)
         {
             var opcode = packet.GetOpcode();
-            if ((opcode & 0xB2AD) == 12)
-                ParseSpecialPacket(packet);
-            else
-                ParseStandardPacket(packet);
-        }
-
-        public static void ParseSpecialPacket(Packet packet)
-        {
-            var opcode = packet.GetOpcode();
-            var caseNum = ((opcode & 2 | ((opcode & 0x10 | ((opcode & 0x40 | ((opcode & 0x100 | ((opcode & 0xC00 | (opcode >> 2) & 0x1000) >> 1)) >> 1)) >> 1)) >> 2)) >> 1);
             var time = packet.GetTime();
             var direction = packet.GetDirection();
             var length = packet.GetLength();
-            bool handlerFound = false;
 
-            if (SpecialHandlers.ContainsKey(caseNum))
-            {
-                var handler = SpecialHandlers[caseNum];
-                Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("{0}: {1} (0x{2}, Special) (Case: {3} ({4} / 0x{5})) Length: {6} Time: {7}", (direction == 1) ? "Client->Server" : "Server->Client",
-                    (Opcode)opcode, ((int)opcode).ToString("X4"), SpecialHandlerNames[caseNum], (int)caseNum, ((int)caseNum).ToString("X4"), length, time);
+            Console.WriteLine("{0}: {1} (0x{2}) Length: {3} Time: {4}", direction,
+                opcode, ((int)opcode).ToString("X4"), length, time);
 
-                Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White;
 
-                try
-                {
-                    handlerFound = true;
-                    handler(packet);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.GetType());
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
-                }
-            }
-            else if (!_noHex)
-            {
-                if (!(_skipLarge && length > 10000))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("{0}: {1} (0x{2}, Special) Length: {3} Time: {4}", (direction == 1) ? "Client->Server" : "Server->Client",
-                        opcode, ((int)opcode).ToString("X4"), length, time);
-
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(Utilities.DumpPacketAsHex(packet));
-                }
-                else
-                    packet.SetPosition(packet.GetLength());
-            }
-
-#if DEBUG
-            if (handlerFound && packet.GetPosition() < packet.GetLength())
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-
-                var pos = packet.GetPosition();
-                var len = packet.GetLength();
-                Console.WriteLine("Packet not fully read! Current position is {0}, length is {1}, and diff is {2}.",
-                    pos, len, len - pos);
-
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-#endif
-
-            Console.ResetColor();
-            if (handlerFound || !_noHex)
-                Console.WriteLine();
-        }
-
-        public static void ParseStandardPacket(Packet packet)
-        {
-            var opcode = packet.GetOpcode();
-            var time = packet.GetTime();
-            var direction = packet.GetDirection();
-            var length = packet.GetLength();
-            bool handlerFound = false;
-
+            var handlerFound = false;
             if (Handlers.ContainsKey(opcode))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-
-                Console.WriteLine("{0}: {1} (0x{2}) Length: {3} Time: {4}", (direction == 1) ? "Client->Server" : "Server->Client",
-                    (Opcode)opcode, ((int)opcode).ToString("X4"), length, time);
-
-                Console.ForegroundColor = ConsoleColor.White;
                 var handler = Handlers[opcode];
 
                 try
@@ -220,21 +113,8 @@ namespace AriDEVParser.Parsing
                     Console.WriteLine(ex.StackTrace);
                 }
             }
-            else if (!_noHex)
-            {
-                if (!(_skipLarge && length > 10000))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("{0}: {1} (0x{2}) Length: {3} Time: {4}", (direction == 1) ? "Client->Server" : "Server->Client",
-                        (Opcode)opcode, ((int)opcode).ToString("X4"), length, time);
-
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(Utilities.DumpPacketAsHex(packet));
-                }
-                else
-                    packet.SetPosition(packet.GetLength());
-            }
+            else
+                Console.WriteLine(Utilities.DumpPacketAsHex(packet));
 
 #if DEBUG
             if (handlerFound && packet.GetPosition() < packet.GetLength())
@@ -251,8 +131,7 @@ namespace AriDEVParser.Parsing
 #endif
 
             Console.ResetColor();
-            if (handlerFound || !_noHex)
-                Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

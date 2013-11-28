@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -11,7 +11,7 @@ namespace AriDEVParser.Util
 {
     public sealed class Packet : BinaryReader
     {
-        public Packet(byte[] input, ushort opcode, DateTime time, byte direction)
+        public Packet(byte[] input, Opcode opcode, DateTime time, Direction direction)
             : base(new MemoryStream(input, 0, input.Length), Encoding.UTF8)
         {
             _opcode = opcode;
@@ -19,17 +19,13 @@ namespace AriDEVParser.Util
             _direction = direction;
         }
 
-        private readonly ushort _opcode;
+        private readonly Opcode _opcode;
 
         private readonly DateTime _time;
 
-        private readonly byte _direction;
+        private readonly Direction _direction;
 
-        private byte _currentByte;
-        // position of the next bit in _currentByte to be read
-        private sbyte _bitPos = -1;
-
-        public ushort GetOpcode()
+        public Opcode GetOpcode()
         {
             return _opcode;
         }
@@ -39,7 +35,7 @@ namespace AriDEVParser.Util
             return _time;
         }
 
-        public byte GetDirection()
+        public Direction GetDirection()
         {
             return _direction;
         }
@@ -103,8 +99,8 @@ namespace AriDEVParser.Util
             var i = 0;
             while (i < 8)
             {
-                if ((mask & (1 << i)) != 0)
-                    res |= (ulong)ReadByte() << (i * 8);
+                if ((mask & 1 << i) != 0)
+                    res += (ulong)ReadByte() << (i * 8);
 
                 i++;
             }
@@ -195,6 +191,11 @@ namespace AriDEVParser.Util
             return new KeyValuePair<int, bool>(entry, result);
         }
 
+        public LfgEntry ReadLfgEntry()
+        {
+            return new LfgEntry(ReadInt32());
+        }
+
         public UpdateField ReadUpdateField()
         {
             var pos = GetPosition();
@@ -220,222 +221,6 @@ namespace AriDEVParser.Util
             var returnObject = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             handle.Free();
             return returnObject;
-        }
-
-        public T Read<T>(string name)
-            where T : struct
-        {
-            T val = ReadStruct<T>();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public byte ReadByte(string name)
-        {
-            var val = ReadByte();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public byte ReadByte(string name, string prepend, string format)
-        {
-            var val = ReadByte();
-            Console.WriteLine("{0}: {1}{2}", name, prepend, val.ToString(format));
-            return val;
-        }
-
-        public short ReadInt16(string name)
-        {
-            var val = ReadInt16();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public short ReadInt16(string name, string prepend, string format)
-        {
-            var val = ReadInt16();
-            Console.WriteLine("{0}: {1}{2}", name, prepend, val.ToString(format));
-            return val;
-        }
-
-        public int ReadInt32(string name)
-        {
-            var val = ReadInt32();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public int ReadInt32(string name, string prepend, string format)
-        {
-            var val = ReadInt32();
-            Console.WriteLine("{0}: {1}{2}", name, prepend, val.ToString(format));
-            return val;
-        }
-
-        public long ReadInt64(string name)
-        {
-            var val = ReadInt64();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public long ReadInt64(string name, string prepend, string format)
-        {
-            var val = ReadInt64();
-            Console.WriteLine("{0}: {1}{2}", name, prepend, val.ToString(format));
-            return val;
-        }
-
-        public Guid ReadGuid(string name)
-        {
-            var val = ReadGuid();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public string ReadCString(string name)
-        {
-            var val = ReadCString();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public Guid ReadPackedGuid(string name)
-        {
-            var val = ReadPackedGuid();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public float ReadSingle(string name)
-        {
-            var val = ReadSingle();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public bool ReadBoolean(string name)
-        {
-            var val = ReadBoolean();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public KeyValuePair<int, bool> ReadEntryKey(string name)
-        {
-            var entry = ReadEntry();
-            Console.WriteLine("{0}: {1}", name, entry.Key);
-            return entry;
-        }
-
-        public Vector4 ReadVector4(string name)
-        {
-            var val = ReadVector4();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public Vector3 ReadVector3(string name)
-        {
-            var val = ReadVector3();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public Quaternion ReadPackedQuaternion(string name)
-        {
-            var val = ReadPackedQuaternion();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        public DateTime ReadTime(string name)
-        {
-            var val = ReadTime();
-            Console.WriteLine("{0}: {1}", name, val);
-            return val;
-        }
-
-        private KeyValuePair<long, T> ReadEnum<T>(TypeCode code, byte bitsCount = (byte)0)
-        {
-            var type = typeof(T);
-            object value = null;
-            long rawVal = 0;
-
-            if (code == TypeCode.Empty)
-                code = Type.GetTypeCode(type.GetEnumUnderlyingType());
-
-            switch (code)
-            {
-                case TypeCode.SByte:
-                    rawVal = ReadSByte();
-                    break;
-                case TypeCode.Byte:
-                    rawVal = ReadByte();
-                    break;
-                case TypeCode.Int16:
-                    rawVal = ReadInt16();
-                    break;
-                case TypeCode.UInt16:
-                    rawVal = ReadUInt16();
-                    break;
-                case TypeCode.Int32:
-                    rawVal = ReadInt32();
-                    break;
-                case TypeCode.UInt32:
-                    rawVal = ReadUInt32();
-                    break;
-                case TypeCode.Int64:
-                    rawVal = ReadInt64();
-                    break;
-                case TypeCode.UInt64:
-                    rawVal = (long)ReadUInt64();
-                    break;
-                case TypeCode.DBNull:
-                    rawVal = ReadBits(bitsCount);
-                    break;
-            }
-            value = System.Enum.ToObject(type, rawVal);
-
-            return new KeyValuePair<long, T>(rawVal, (T)value);
-        }
-
-        public T ReadEnum<T>(string name, TypeCode code = TypeCode.Empty)
-        {
-            KeyValuePair<long, T> val = ReadEnum<T>(code);   
-            Console.WriteLine("{0}: {1} ({2})", name, val.Value, val.Key);
-            return val.Value;
-        }
-
-        public bool ReadBit()
-        {
-            if(_bitPos < 0)
-            {
-                _currentByte = ReadByte();
-                _bitPos = 7;
-            }
-            return ((_currentByte >> _bitPos--) & 1) != 0;
-        }
-
-        /// <summary>
-        /// Reads an integer stored in bitsCount bits inside the bit stream.
-        /// </summary>
-        public uint ReadBits(byte bitsCount)
-        {
-            uint value = 0;
-            for (int i = bitsCount - 1; i >= 0; i--)
-            {
-                if(ReadBit())
-                    value |= (uint) 1 << i;
-            }
-            return value;
-        }
-
-        public T ReadEnum<T>(string name, byte bitsCount)
-        {
-            KeyValuePair<long, T> val = ReadEnum<T>(TypeCode.DBNull, bitsCount);
-            Console.WriteLine("{0}: {1} ({2})", name, val.Value, val.Key);
-            return val.Value;
         }
     }
 }

@@ -13,11 +13,6 @@ namespace AriDEVParser.Util
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTime);
         }
 
-        public static DateTime GetDateTimeFromUnixTime(long unixTime)
-        {
-            return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTime);
-        }
-
         public static byte[] HexStringToBinary(string data)
         {
             var bytes = new List<byte>();

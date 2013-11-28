@@ -54,7 +54,7 @@ namespace AriDEVParser.Util
             if (!HasEntry())
                 return 0;
 
-            return (uint)((Full & 0x000FFFFF00000000) >> 32);
+            return (uint)((Full & 0x000FFFFFFF000000) >> 24);
         }
 
         public HighGuidType GetHighType()

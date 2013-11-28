@@ -57,7 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\libs\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\libs\MySql.Data.dll</HintPath>
@@ -66,7 +66,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\libs\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -77,41 +77,114 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AccountDataType.cs" />
+    <Compile Include="Enums\ActionButtonType.cs" />
+    <Compile Include="Enums\AIReaction.cs" />
+    <Compile Include="Enums\AmmoType.cs" />
+    <Compile Include="Enums\AuraFlag.cs" />
+    <Compile Include="Enums\BagFamilyMask.cs" />
+    <Compile Include="Enums\BarberShopResult.cs" />
+    <Compile Include="Enums\BillingFlag.cs" />
+    <Compile Include="Enums\CastFlag.cs" />
+    <Compile Include="Enums\ChannelFlag.cs" />
+    <Compile Include="Enums\ChannelMemberFlag.cs" />
+    <Compile Include="Enums\CharacterFlag.cs" />
     <Compile Include="Enums\ChatMessageType.cs" />
+    <Compile Include="Enums\ChatNotificationType.cs" />
     <Compile Include="Enums\ChatTag.cs" />
     <Compile Include="Enums\Class.cs" />
+    <Compile Include="Enums\ClassMask.cs" />
+    <Compile Include="Enums\ClientType.cs" />
+    <Compile Include="Enums\ContactEntryFlag.cs" />
+    <Compile Include="Enums\ContactListFlag.cs" />
+    <Compile Include="Enums\ContactResult.cs" />
+    <Compile Include="Enums\ContactStatus.cs" />
     <Compile Include="Enums\CreatureFamily.cs" />
     <Compile Include="Enums\CreatureRank.cs" />
     <Compile Include="Enums\CreatureType.cs" />
     <Compile Include="Enums\CreatureTypeFlag.cs" />
+    <Compile Include="Enums\CustomizationFlag.cs" />
+    <Compile Include="Enums\DamageType.cs" />
+    <Compile Include="Enums\DifficultyChangeType.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\EquipmentSetState.cs" />
+    <Compile Include="Enums\FactionFlag.cs" />
+    <Compile Include="Enums\GameObjectFlag.cs" />
     <Compile Include="Enums\GameobjectType.cs" />
     <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\GossipPoiIcon.cs" />
+    <Compile Include="Enums\GroupMemberStatusFlag.cs" />
+    <Compile Include="Enums\GroupTypeFlag.cs" />
+    <Compile Include="Enums\GroupUpdateFlag.cs" />
     <Compile Include="Enums\HighGuidMask.cs" />
     <Compile Include="Enums\HighGuidType.cs" />
+    <Compile Include="Enums\Holiday.cs" />
+    <Compile Include="Enums\InstanceResetWarningType.cs" />
+    <Compile Include="Enums\InstanceStatus.cs" />
+    <Compile Include="Enums\InventoryType.cs" />
+    <Compile Include="Enums\ItemBonding.cs" />
+    <Compile Include="Enums\ItemClass.cs" />
+    <Compile Include="Enums\ItemFlag.cs" />
+    <Compile Include="Enums\ItemFlagExtra.cs" />
+    <Compile Include="Enums\ItemModType.cs" />
+    <Compile Include="Enums\ItemQuality.cs" />
+    <Compile Include="Enums\ItemSocketColor.cs" />
+    <Compile Include="Enums\ItemSpellTriggerType.cs" />
+    <Compile Include="Enums\KickReason.cs" />
+    <Compile Include="Enums\LfgEntryCheckResult.cs" />
+    <Compile Include="Enums\LfgError.cs" />
+    <Compile Include="Enums\LfgJoinResult.cs" />
+    <Compile Include="Enums\LfgRoleCheckResult.cs" />
+    <Compile Include="Enums\LfgRoleCheckStatus.cs" />
+    <Compile Include="Enums\LfgRoleFlag.cs" />
+    <Compile Include="Enums\LfgState.cs" />
+    <Compile Include="Enums\LfgType.cs" />
+    <Compile Include="Enums\LfgUpdateFlag.cs" />
+    <Compile Include="Enums\LfgUpdateType.cs" />
+    <Compile Include="Enums\LootMethod.cs" />
+    <Compile Include="Enums\MapDifficulty.cs" />
+    <Compile Include="Enums\Material.cs" />
+    <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\Opcodes.cs" />
     <Compile Include="Enums\Language.cs" />
     <Compile Include="Enums\MoveAnimationState.cs" />
     <Compile Include="Enums\MoveFlag.cs" />
     <Compile Include="Enums\MoveFlagExtra.cs" />
     <Compile Include="Enums\ObjectType.cs" />
+    <Compile Include="Enums\PageMaterial.cs" />
+    <Compile Include="Enums\PetTameFailureReason.cs" />
+    <Compile Include="Enums\PowerType.cs" />
     <Compile Include="Enums\QuestFlag.cs" />
     <Compile Include="Enums\QuestMethod.cs" />
     <Compile Include="Enums\QuestSort.cs" />
     <Compile Include="Enums\QuestType.cs" />
     <Compile Include="Enums\Race.cs" />
+    <Compile Include="Enums\RaceMask.cs" />
+    <Compile Include="Enums\RealmSplitState.cs" />
+    <Compile Include="Enums\ReputationRank.cs" />
+    <Compile Include="Enums\ResponseCode.cs" />
+    <Compile Include="Enums\SheathType.cs" />
     <Compile Include="Enums\SpeedType.cs" />
+    <Compile Include="Enums\SpellCastFailureReason.cs" />
+    <Compile Include="Enums\SpellMissType.cs" />
     <Compile Include="Enums\SplineFlag.cs" />
     <Compile Include="Enums\SplineMode.cs" />
     <Compile Include="Enums\SplineType.cs" />
+    <Compile Include="Enums\SqlFormat.cs" />
+    <Compile Include="Enums\StatType.cs" />
+    <Compile Include="Enums\TargetFlag.cs" />
+    <Compile Include="Enums\TeamType.cs" />
+    <Compile Include="Enums\TotemCategory.cs" />
+    <Compile Include="Enums\TrainerSpellState.cs" />
+    <Compile Include="Enums\TrainerType.cs" />
+    <Compile Include="Enums\TransferAbortReason.cs" />
+    <Compile Include="Enums\TypeMask.cs" />
     <Compile Include="Enums\UpdateField.cs" />
     <Compile Include="Enums\UpdateFlag.cs" />
     <Compile Include="Enums\UpdateType.cs" />
     <Compile Include="Loading\Loader.cs" />
     <Compile Include="Loading\LoaderAttribute.cs" />
-    <Compile Include="Loading\Loaders\FabiLoader.cs" />
-    <Compile Include="Loading\Loaders\LordJZLoader.cs" />
-    <Compile Include="Loading\Loaders\IzidorLoader.cs" />
-    <Compile Include="Loading\Loaders\SynricLoader.cs" />
+    <Compile Include="Loading\Loaders\AriDEVLoader.cs" />
     <Compile Include="Loading\Reader.cs" />
     <Compile Include="Parsing\Handler.cs" />
     <Compile Include="Parsing\ParserAttribute.cs" />
@@ -131,22 +204,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SQLOutput\Creature.cs" />
-    <Compile Include="SQLOutput\CreatureStorage.cs" />
-    <Compile Include="SQLOutput\CreatureUpdateStorage.cs" />
-    <Compile Include="SQLOutput\DataClasses.cs" />
-    <Compile Include="SQLOutput\Extensions.cs" />
-    <Compile Include="SQLOutput\GameObject.cs" />
-    <Compile Include="SQLOutput\GameObjectStorage.cs" />
-    <Compile Include="SQLOutput\Quest.cs" />
-    <Compile Include="SQLOutput\QuestStorage.cs" />
-    <Compile Include="SQLOutput\SpawnStorage.cs" />
-    <Compile Include="SQLOutput\SQLStorage.cs" />
+    <Compile Include="SQLOutput\CommandBuilder.cs" />
+    <Compile Include="SQLOutput\CreatureSpawnStore.cs" />
+    <Compile Include="SQLOutput\CreatureSpawnUpdateStore.cs" />
+    <Compile Include="SQLOutput\CreatureStore.cs" />
+    <Compile Include="SQLOutput\CreatureUpdateStore.cs" />
+    <Compile Include="SQLOutput\GameObjectSpawnStore.cs" />
+    <Compile Include="SQLOutput\GameObjectSpawnUpdateStore.cs" />
+    <Compile Include="SQLOutput\GameObjectStore.cs" />
+    <Compile Include="SQLOutput\GameObjectUpdateStore.cs" />
+    <Compile Include="SQLOutput\ItemStore.cs" />
+    <Compile Include="SQLOutput\NpcTextStore.cs" />
+    <Compile Include="SQLOutput\PageTextStore.cs" />
+    <Compile Include="SQLOutput\QuestPoiPointStore.cs" />
+    <Compile Include="SQLOutput\QuestPoiStore.cs" />
+    <Compile Include="SQLOutput\QuestStore.cs" />
+    <Compile Include="SQLOutput\SQLOutput.cs" />
+    <Compile Include="SQLOutput\StartActionStore.cs" />
+    <Compile Include="SQLOutput\StartPositionStore.cs" />
+    <Compile Include="SQLOutput\StartSpellStore.cs" />
+    <Compile Include="SQLOutput\TrainerSpellStore.cs" />
+    <Compile Include="SQLOutput\VendorItemStore.cs" />
     <Compile Include="Util\CharacterInfo.cs" />
     <Compile Include="Util\CommandLine.cs" />
     <Compile Include="Util\DamageStatistics.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\Guid.cs" />
+    <Compile Include="Util\LfgEntry.cs" />
     <Compile Include="Util\MovementInfo.cs" />
     <Compile Include="Util\Packet.cs" />
     <Compile Include="Util\Quaternion.cs" />

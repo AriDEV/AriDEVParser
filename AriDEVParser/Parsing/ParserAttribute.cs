@@ -6,16 +6,11 @@ namespace AriDEVParser.Parsing
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     public sealed class ParserAttribute : Attribute
     {
-        public ParserAttribute(ushort i)
+        public ParserAttribute(Opcode opcode)
         {
-            index = i;
+            Opcode = opcode;
         }
 
-        public ParserAttribute(Opcode i)
-        {
-            index = (ushort)i;
-        }
-
-        public int index { get; private set; }
+        public Opcode Opcode { get; private set; }
     }
 }

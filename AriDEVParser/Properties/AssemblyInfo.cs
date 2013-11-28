@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AriDEV")]
 [assembly: AssemblyProduct("AriDEVParser")]
-[assembly: AssemblyCopyright("Copyright © AriDEV 2011")]
+[assembly: AssemblyCopyright("Copyright © AriDEV 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("296a1da2-4561-7a9a-ab6b-c2589f96546b")]
+[assembly: Guid("156a1cb2-4671-8b9a-a1bb-c7856f96326b")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.5.4.1")]
+[assembly: AssemblyFileVersion("1.5.4.1")]
