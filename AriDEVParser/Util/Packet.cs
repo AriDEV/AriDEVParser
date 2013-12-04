@@ -163,6 +163,8 @@ namespace AriDEVParser.Util
             return new Quaternion(x, y, z, w);
         }
 
+
+
         public string ReadCString(Encoding encoding)
         {
             var bytes = new List<byte>();
@@ -221,6 +223,95 @@ namespace AriDEVParser.Util
             var returnObject = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             handle.Free();
             return returnObject;
+        }
+        
+        /// BitStream ///
+        
+        private byte _bitpos = 8;
+        private byte _curbitval;
+        
+        public Bit ReadBit()
+        {
+            ++_bitpos;
+
+            if (_bitpos > 7)
+            {
+                _bitpos = 0;
+                _curbitval = ReadByte();
+            }
+
+            var bit = ((_curbitval >> (7 - _bitpos)) & 1) != 0;
+            return bit;
+        }
+        
+        public void ResetBitReader()
+        {
+            _bitpos = 8;
+        }
+        
+        public uint ReadBits(int bits)
+        {
+            uint value = 0;
+            for (var i = bits - 1; i >= 0; --i)
+                if (ReadBit())
+                    value |= (uint)(1 << i);
+
+            return value;
+        }
+        
+        public byte[] StartBitStream(params int[] values)
+        {
+            var bytes = new byte[values.Length];
+
+            foreach (var value in values)
+                bytes[value] = (byte)(ReadBit() ? 1 : 0);
+
+            return bytes;
+        }
+
+        public void StartBitStream(byte[] stream, params int[] values)
+        {
+            foreach (var value in values)
+                stream[value] = (byte)(ReadBit() ? 1 : 0);
+        }
+
+        public byte ParseBitStream(byte[] stream, byte value)
+        {
+            if (stream[value] != 0)
+                return stream[value] ^= ReadByte();
+
+            return 0;
+        }
+
+        public byte[] ParseBitStream(byte[] stream, params byte[] values)
+        {
+            var tempBytes = new byte[values.Length];
+            var i = 0;
+
+            foreach (var value in values)
+            {
+                if (stream[value] != 0)
+                    stream[value] ^= ReadByte();
+
+                tempBytes[i++] = stream[value];
+            }
+
+            return tempBytes;
+        }
+        
+        public byte ReadXORByte(byte[] stream, byte value)
+        {
+            if (stream[value] != 0)
+                return stream[value] ^= ReadByte();
+
+            return 0;
+        }
+
+        public void ReadXORBytes(byte[] stream, params byte[] values)
+        {
+            foreach (var value in values)
+                if (stream[value] != 0)
+                    stream[value] ^= ReadByte();
         }
     }
 }

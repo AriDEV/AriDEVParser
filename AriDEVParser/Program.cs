@@ -104,7 +104,7 @@ namespace AriDEVParser
             if (!string.IsNullOrEmpty(error))
                 Console.WriteLine(error + n);
 
-            var usage = "Usage: WoWPacketParser -file <input file> -loader <loader type> " +
+            var usage = "Usage: AriDEVParser -file <input file> -loader <loader type> " +
                 "[-filters opcode1,opcode2,...] [-sql <SQL format>] [-nodump <boolean>]" + n + n +
                 "-file\t\tThe file to read packets from." + n +
                 "-loader\t\tThe loader to use (AriDEV)." + n +
