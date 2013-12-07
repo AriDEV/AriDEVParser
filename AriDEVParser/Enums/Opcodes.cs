@@ -16,7 +16,7 @@ namespace AriDEVParser.Enums
         CMSG_ADD_IGNORE                                          = 0x0,
         CMSG_ADD_VOICE_IGNORE                                    = 0x0,
         CMSG_ALTER_APPEARANCE                                    = 0x0,
-        CMSG_AREATRIGGER                                         = 0x0,
+        CMSG_AREATRIGGER                                         = 0x1376, // 5.4.1 17538
         CMSG_AREA_SPIRIT_HEALER_QUERY                            = 0x0,
         CMSG_AREA_SPIRIT_HEALER_QUEUE                            = 0x0,
         CMSG_ARENA_TEAM_ACCEPT                                   = 0x0,
@@ -48,7 +48,7 @@ namespace AriDEVParser.Enums
         CMSG_AUTOSTORE_GROUND_ITEM                               = 0x0,
         CMSG_AUTOSTORE_LOOT_ITEM                                 = 0x0,
         CMSG_AUTO_DECLINE_GUILD_INVITES                          = 0x0,
-        CMSG_BANKER_ACTIVATE                                     = 0x0,
+        CMSG_BANKER_ACTIVATE                                     = 0x07FD, // 5.4.1 17538
         CMSG_BATTLEFIELD_JOIN                                    = 0x0,
         CMSG_BATTLEFIELD_LEAVE                                   = 0x0,
         CMSG_BATTLEFIELD_LIST                                    = 0x0,
@@ -69,7 +69,7 @@ namespace AriDEVParser.Enums
         CMSG_BUG                                                 = 0x0,
         CMSG_BUSY_TRADE                                          = 0x0,
         CMSG_BUYBACK_ITEM                                        = 0x0,
-        CMSG_BUY_BANK_SLOT                                       = 0x0,
+        CMSG_BUY_BANK_SLOT                                       = 0x064D, // 5.4.1 17538
         CMSG_BUY_ITEM                                            = 0x0,
         CMSG_CALENDAR_ADD_EVENT                                  = 0x0,
         CMSG_CALENDAR_ARENA_TEAM                                 = 0x0,
@@ -105,7 +105,7 @@ namespace AriDEVParser.Enums
         CMSG_CHANNEL_DISPLAY_LIST                                = 0x0,
         CMSG_CHANNEL_INVITE                                      = 0x0,
         CMSG_CHANNEL_KICK                                        = 0x0,
-        CMSG_CHANNEL_LIST                                        = 0x0,
+        CMSG_CHANNEL_LIST                                        = 0x1178, // 5.4.1 17538
         CMSG_CHANNEL_MODERATE                                    = 0x0,
         CMSG_CHANNEL_MODERATOR                                   = 0x0,
         CMSG_CHANNEL_MUTE                                        = 0x0,
@@ -190,8 +190,8 @@ namespace AriDEVParser.Enums
         CMSG_GM_NUKE                                             = 0x0,
         CMSG_GM_REPORT_LAG                                       = 0x0,
         CMSG_GM_SET_SECURITY_GROUP                               = 0x0,
-        CMSG_GOSSIP_HELLO                                        = 0x0,
-        CMSG_GOSSIP_SELECT_OPTION                                = 0x0,
+        CMSG_GOSSIP_HELLO                                        = 0x025C, //5.4.1 17538
+        CMSG_GOSSIP_SELECT_OPTION                                = 0x03EE, //5.4.1 17538
         CMSG_GRANT_LEVEL                                         = 0x0,
         CMSG_GROUP_ASSISTANT_LEADER                              = 0x0,
         CMSG_GROUP_CANCEL                                        = 0x0,
@@ -254,7 +254,7 @@ namespace AriDEVParser.Enums
         CMSG_HEARTH_AND_RESURRECT                                = 0x0,
         CMSG_IGNORE_TRADE                                        = 0x0,
         CMSG_INITIATE_TRADE                                      = 0x0,
-        CMSG_INSPECT                                             = 0x0,
+        CMSG_INSPECT                                             = 0x0255, // 5.4.1 17538
         CMSG_INSPECT_HONOR_STATS                                 = 0x0,
         CMSG_INSTANCE_LOCK_WARNING_RESPONSE                      = 0x0,
         CMSG_ITEM_REFUND                                         = 0x0,
@@ -315,7 +315,7 @@ namespace AriDEVParser.Enums
         CMSG_MESSAGECHAT_CHANNEL                                 = 0x0,
         CMSG_MESSAGECHAT_DND                                     = 0x0,
         CMSG_MESSAGECHAT_EMOTE                                   = 0x0,
-        CMSG_MESSAGECHAT_GUILD                                   = 0x0,
+        CMSG_MESSAGECHAT_GUILD                                   = 0x0459, // 5.4.1 17538
         CMSG_MESSAGECHAT_OFFICER                                 = 0x0,
         CMSG_MESSAGECHAT_PARTY                                   = 0x0,
         CMSG_MESSAGECHAT_RAID                                    = 0x0,
@@ -344,7 +344,7 @@ namespace AriDEVParser.Enums
         CMSG_MOVE_HOVER_ACK                                      = 0x0,
         CMSG_MOVE_KNOCK_BACK_ACK                                 = 0x0,
         CMSG_MOVE_NOT_ACTIVE_MOVER                               = 0x0,
-        CMSG_MOVE_SET_CAN_FLY                                    = 0x063E, // 5.4.1 17538
+        CMSG_MOVE_SET_CAN_FLY                                    = 0x1769, // 5.4.1 17538
         CMSG_MOVE_SET_CAN_FLY_ACK                                = 0x0,
         CMSG_MOVE_SET_CAN_TRANSITION_BETWEEN_SWIM_AND_FLY_ACK    = 0x0,
         CMSG_MOVE_SET_COLLISION_HEIGHT_ACK                       = 0x0,
@@ -450,7 +450,7 @@ namespace AriDEVParser.Enums
         CMSG_RESET_FACTION_CHEAT                                 = 0x0,
         CMSG_RESET_INSTANCES                                     = 0x0,
         CMSG_RESURRECT_RESPONSE                                  = 0x0,
-        CMSG_RETURN_TO_GRAVEYARD                                 = 0x0,
+        CMSG_RETURN_TO_GRAVEYARD                                 = 0xA65, // 5.4.1 17538
         CMSG_ROLE_POLL_BEGIN                                     = 0x0,
         CMSG_SAVE_CUF_PROFILES                                   = 0x0,
         CMSG_SAVE_PLAYER                                         = 0x0,
@@ -482,7 +482,7 @@ namespace AriDEVParser.Enums
         CMSG_SET_PET_SLOT                                        = 0x0,
         CMSG_SET_PLAYER_DECLINED_NAMES                           = 0x0,
         CMSG_SET_PREFERED_CEMETERY                               = 0x0,
-        CMSG_SET_PRIMARY_TALENT_TREE                             = 0x0,
+        CMSG_SET_PRIMARY_TALENT_TREE                             = 0x17DF, // 5.4.1 17538
         CMSG_SET_RELATIVE_POSITION                               = 0x0,
         CMSG_SET_SAVED_INSTANCE_EXTEND                           = 0x0,
         CMSG_SET_SELECTION                                       = 0x07CD, // 5.4.1 17538
@@ -550,7 +550,7 @@ namespace AriDEVParser.Enums
         CMSG_WARDEN_DATA                                         = 0x05E8, // 5.4.1 17538
         CMSG_WARGAME_ACCEPT                                      = 0x0,
         CMSG_WARGAME_START                                       = 0x0,
-        CMSG_WHO                                                 = 0x0,
+        CMSG_WHO                                                 = 0x1568, // 5.4.1 17538
         CMSG_WHOIS                                               = 0x0,
         CMSG_WORLD_STATE_UI_TIMER_UPDATE                         = 0x04EC, // 5.4.1 17538
         CMSG_WORLD_TELEPORT                                      = 0x0,
@@ -609,7 +609,7 @@ namespace AriDEVParser.Enums
         MSG_MOVE_TOGGLE_FALL_LOGGING                             = 0x0,
         MSG_MOVE_TOGGLE_LOGGING                                  = 0x0,
         MSG_MOVE_UPDATE_MOUSE                                    = 0x0,
-        MSG_MOVE_WORLDPORT_ACK                                   = 0x0,
+        MSG_MOVE_WORLDPORT_ACK                                   = 0x12CC, // 5.4.1 17538 - GUESSED !
         MSG_NOTIFY_PARTY_SQUELCH                                 = 0x0,
         MSG_PARTY_ASSIGNMENT                                     = 0x0,
         MSG_PETITION_DECLINE                                     = 0x0,
@@ -652,9 +652,9 @@ namespace AriDEVParser.Enums
         SMSG_ARENA_TEAM_QUERY_RESPONSE                           = 0x0,
         SMSG_ARENA_TEAM_ROSTER                                   = 0x0,
         SMSG_ARENA_TEAM_STATS                                    = 0x0,
-        SMSG_ATTACKERSTATEUPDATE                                 = 0x0,
-        SMSG_ATTACKSTART                                         = 0x0,
-        SMSG_ATTACKSTOP                                          = 0x0,
+        SMSG_ATTACKERSTATEUPDATE                                 = 0x182B, // 5.4.1 17538
+        SMSG_ATTACKSTART                                         = 0x012F, // 5.4.1 17538 
+        SMSG_ATTACKSTOP                                          = 0x0D3C, // 5.4.1 17538
         SMSG_ATTACKSWING_BADFACING                               = 0x0,
         SMSG_ATTACKSWING_CANT_ATTACK                             = 0x0,
         SMSG_ATTACKSWING_DEADTARGET                              = 0x0,
@@ -676,7 +676,7 @@ namespace AriDEVParser.Enums
         SMSG_AVAILABLE_VOICE_CHANNEL                             = 0x0,
         SMSG_AVERAGE_ITEM_LEVEL_INFORM                           = 0x0,
         SMSG_BARBER_SHOP_RESULT                                  = 0x0,
-        SMSG_BATTLEFIELD_LIST                                    = 0x0,
+        SMSG_BATTLEFIELD_LIST                                    = 0x09B7, // 5.4.1 17538
         SMSG_BATTLEFIELD_MGR_EJECTED                             = 0x0,
         SMSG_BATTLEFIELD_MGR_EJECT_PENDING                       = 0x0,
         SMSG_BATTLEFIELD_MGR_ENTERED                             = 0x0,
@@ -917,7 +917,7 @@ namespace AriDEVParser.Enums
         SMSG_GUILD_XP                                            = 0x0,
         SMSG_GUILD_XP_GAIN                                       = 0x0,
         SMSG_GUILD_XP_UPDATE                                     = 0x0,
-        SMSG_HEALTH_UPDATE                                       = 0x0,
+        SMSG_HEALTH_UPDATE                                       = 0x0C36, // 5.4.1 17538
         SMSG_HIGHEST_THREAT_UPDATE                               = 0x0,
         SMSG_HOTFIX_INFO                                         = 0x0C27, // 5.4.1 17538
         SMSG_HOTFIX_NOTIFY                                       = 0x0,
@@ -951,7 +951,7 @@ namespace AriDEVParser.Enums
         SMSG_ITEM_TIME_UPDATE                                    = 0x0,
         SMSG_JOINED_BATTLEGROUND_QUEUE                           = 0x0,
         SMSG_KICK_REASON                                         = 0x0,
-        SMSG_LEARNED_DANCE_MOVES                                 = 0x0,
+        SMSG_LEARNED_DANCE_MOVES                                 = 0x041F, // 5.4.1 17538
         SMSG_LEARNED_SPELL                                       = 0x118E, // 5.4.1 17538
         SMSG_LEVELUP_INFO                                        = 0x0,
         SMSG_LFG_BOOT_PROPOSAL_UPDATE                            = 0x0,
@@ -1015,7 +1015,7 @@ namespace AriDEVParser.Enums
         SMSG_MISSILE_CANCEL                                      = 0x0,
         SMSG_MODIFY_COOLDOWN                                     = 0x0,
         SMSG_MONEY_NOTIFY                                        = 0x0,
-        SMSG_MONSTER_MOVE                                        = 0x0,
+        SMSG_MONSTER_MOVE                                        = 0x0216, // 5.4.1 17538
         SMSG_MONSTER_MOVE_TRANSPORT                              = 0x0,
         SMSG_MOTD                                                = 0x04AC, // 5.4.1 17538
         SMSG_MOUNTRESULT                                         = 0x10BC, // 5.4.1 17538
@@ -1214,7 +1214,7 @@ namespace AriDEVParser.Enums
         SMSG_SET_PROFICIENCY                                     = 0x05B6, // 5.4.1 17538
         SMSG_SET_PROJECTILE_POSITION                             = 0x0,
         SMSG_SHOWTAXINODES                                       = 0x0,
-        SMSG_SHOW_BANK                                           = 0x0,
+        SMSG_SHOW_BANK                                           = 0x008E, // 5.4.1 17538
         SMSG_SHOW_RATINGS                                        = 0x0,
         SMSG_SOCKET_GEMS_RESULT                                  = 0x0,
         SMSG_SOR_START_EXPERIENCE_INCOMPLETE                     = 0x0,
@@ -1344,11 +1344,11 @@ namespace AriDEVParser.Enums
         SMSG_WEEKLY_RESET_CURRENCY                               = 0x0,
         SMSG_WEEKLY_SPELL_USAGE                                  = 0x01CD, // 5.4.1 17538
         SMSG_WEEKLY_SPELL_USAGE_UPDATE                           = 0x0,
-        SMSG_WHO                                                 = 0x0,
+        SMSG_WHO                                                 = 0x053C, // 5.4.1 17538
         SMSG_WHOIS                                               = 0x0,
         SMSG_WORLD_SERVER_INFO                                   = 0x0427, // 5.4.1 17538
         SMSG_WORLD_STATE_UI_TIMER_UPDATE                         = 0x0,
         SMSG_XP_GAIN_ABORTED                                     = 0x0,
-        SMSG_ZONE_UNDER_ATTACK                                   = 0x0,
+        SMSG_ZONE_UNDER_ATTACK                                   = 0x148D, // 5.4.1 17538
     }
 }
