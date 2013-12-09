@@ -12,8 +12,8 @@ namespace AriDEVParser.Enums
         CMSG_ACTIVATETAXI                                        = 0x0,
         CMSG_ACTIVATETAXIEXPRESS                                 = 0x0,
         CMSG_ADDON_REGISTERED_PREFIXES                           = 0x0,
-        CMSG_ADD_FRIEND                                          = 0x0,
-        CMSG_ADD_IGNORE                                          = 0x0,
+        CMSG_ADD_FRIEND                                          = 0x0112, // 5.4.1 17538
+        CMSG_ADD_IGNORE                                          = 0x0922, // 5.4.1 17538
         CMSG_ADD_VOICE_IGNORE                                    = 0x0,
         CMSG_ALTER_APPEARANCE                                    = 0x0,
         CMSG_AREATRIGGER                                         = 0x1376, // 5.4.1 17538
@@ -97,7 +97,7 @@ namespace AriDEVParser.Enums
         CMSG_CANCEL_QUEUED_SPELL                                 = 0x0,
         CMSG_CANCEL_TEMP_ENCHANTMENT                             = 0x0,
         CMSG_CANCEL_TRADE                                        = 0x0,
-        CMSG_CAST_SPELL                                          = 0x0,
+        CMSG_CAST_SPELL                                          = 0x127D, // 5.4.1 17538
         CMSG_CHANGEPLAYER_DIFFICULTY                             = 0x0,
         CMSG_CHANGE_SEATS_ON_CONTROLLED_VEHICLE                  = 0x0,
         CMSG_CHANNEL_ANNOUNCEMENTS                               = 0x0,
@@ -155,13 +155,13 @@ namespace AriDEVParser.Enums
         CMSG_DEL_FRIEND                                          = 0x0,
         CMSG_DEL_IGNORE                                          = 0x0,
         CMSG_DEL_VOICE_IGNORE                                    = 0x0,
-        CMSG_DESTROY_ITEM                                        = 0x0,
+        CMSG_DESTROY_ITEM                                        = 0x16CF, // 5.4.1 17538
         CMSG_DISMISS_CONTROLLED_VEHICLE                          = 0x1261, // 5.4.1 17538
         CMSG_DISMISS_CRITTER                                     = 0x0,
         CMSG_DUEL_ACCEPTED                                       = 0x0,
         CMSG_DUEL_CANCELLED                                      = 0x0,
         CMSG_EJECT_PASSENGER                                     = 0x0,
-        CMSG_EMOTE                                               = 0x0,
+        CMSG_EMOTE                                               = 0x0A4F, // 5.4.1 17538
         CMSG_ENABLETAXI                                          = 0x0,
         CMSG_ENABLE_NAGLE                                        = 0x0,
         CMSG_EQUIPMENT_SET_DELETE                                = 0x0,
@@ -181,7 +181,7 @@ namespace AriDEVParser.Enums
         CMSG_GHOST                                               = 0x0,
         CMSG_GMRESPONSE_RESOLVE                                  = 0x0,
         CMSG_GMSURVEY_SUBMIT                                     = 0x0,
-        CMSG_GMTICKET_CREATE                                     = 0x0,
+        CMSG_GMTICKET_CREATE                                     = 0x0949, // 5.4.1 17538
         CMSG_GMTICKET_DELETETICKET                               = 0x0,
         CMSG_GMTICKET_GETTICKET                                  = 0x0,
         CMSG_GMTICKET_SYSTEMSTATUS                               = 0x0,
@@ -197,7 +197,7 @@ namespace AriDEVParser.Enums
         CMSG_GROUP_CANCEL                                        = 0x0,
         CMSG_GROUP_CHANGE_SUB_GROUP                              = 0x0,
         CMSG_GROUP_DISBAND                                       = 0x0,
-        CMSG_GROUP_INVITE                                        = 0x0,
+        CMSG_GROUP_INVITE                                        = 0x0144, // 5.4.1 17538 (not sure)
         CMSG_GROUP_INVITE_RESPONSE                               = 0x0,
         CMSG_GROUP_RAID_CONVERT                                  = 0x0,
         CMSG_GROUP_REQUEST_JOIN_UPDATES                          = 0x0,
