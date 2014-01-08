@@ -21,9 +21,9 @@ namespace AriDEVParser.Loading.Loaders
             while (bin.BaseStream.Position != bin.BaseStream.Length)
             {
                 var opcode = (Opcode)bin.ReadInt32();
+                var direction = (Direction)bin.ReadChar();
                 var length = bin.ReadInt32();
                 var time = Utilities.GetDateTimeFromUnixTime(bin.ReadInt32());
-                var direction = (Direction)bin.ReadChar();
                 var data = bin.ReadBytes(length);
 
                 var packet = new Packet(data, opcode, time, direction);
