@@ -39,7 +39,7 @@ namespace AriDEVParser.Enums
         CMSG_AUCTION_PLACE_BID                                   = 0x0,
         CMSG_AUCTION_REMOVE_ITEM                                 = 0x0,
         CMSG_AUCTION_SELL_ITEM                                   = 0x0,
-        CMSG_AUTH_SESSION                                        = 0x1A51, // 5.4.7 17807
+        CMSG_AUTH_SESSION                                        = 0x0,
         CMSG_AUTOBANK_ITEM                                       = 0x0,
         CMSG_AUTOEQUIP_GROUND_ITEM                               = 0x0,
         CMSG_AUTOEQUIP_ITEM                                      = 0x0,
@@ -127,7 +127,7 @@ namespace AriDEVParser.Enums
         CMSG_CHAR_CREATE                                         = 0x0,
         CMSG_CHAR_CUSTOMIZE                                      = 0x0,
         CMSG_CHAR_DELETE                                         = 0x0,
-        CMSG_CHAR_ENUM                                           = 0x12C2, // 5.4.7 17807
+        CMSG_CHAR_ENUM                                           = 0x0,
         CMSG_CHAR_FACTION_CHANGE                                 = 0x0,
         CMSG_CHAR_RACE_CHANGE                                    = 0x0,
         CMSG_CHAR_RENAME                                         = 0x0,
@@ -425,7 +425,7 @@ namespace AriDEVParser.Enums
         CMSG_QUEST_POI_QUERY                                     = 0x0,
         CMSG_QUEST_QUERY                                         = 0x0,
         CMSG_RANDOMIZE_CHAR_NAME                                 = 0x0,
-        CMSG_READY_FOR_ACCOUNT_DATA_TIMES                        = 0x13CB, // 5.4.7 17807
+        CMSG_READY_FOR_ACCOUNT_DATA_TIMES                        = 0x0,
         CMSG_READ_ITEM                                           = 0x0,
         CMSG_REALM_SPLIT                                         = 0x0,
         CMSG_REALM_NAME_QUERY                                    = 0x0,
@@ -638,7 +638,7 @@ namespace AriDEVParser.Enums
         MSG_TABARDVENDOR_ACTIVATE                                = 0x0,
         MSG_TALENT_WIPE_CONFIRM                                  = 0x0,
         MSG_VERIFY_CONNECTIVITY                                  = 0x0,
-        SMSG_ACCOUNT_DATA_TIMES                                  = 0x0F40, // 5.4.7 17807
+        SMSG_ACCOUNT_DATA_TIMES                                  = 0x0,
         SMSG_ACCOUNT_INFO_RESPONSE                               = 0x0,
         SMSG_ACCOUNT_RESTRICTED_WARNING                          = 0x0,
         SMSG_ACHIEVEMENT_DELETED                                 = 0x0,
@@ -681,7 +681,7 @@ namespace AriDEVParser.Enums
         SMSG_AURA_POINTS_DEPLETED                                = 0x0,
         SMSG_AURA_UPDATE                                         = 0x0,
         SMSG_AUTH_CHALLENGE                                      = 0x0,
-        SMSG_AUTH_RESPONSE                                       = 0x03A8, //5.4.7 17807
+        SMSG_AUTH_RESPONSE                                       = 0x0,
         SMSG_AVAILABLE_VOICE_CHANNEL                             = 0x0,
         SMSG_AVERAGE_ITEM_LEVEL_INFORM                           = 0x0,
         SMSG_BARBER_SHOP_RESULT                                  = 0x0,
@@ -748,7 +748,7 @@ namespace AriDEVParser.Enums
         SMSG_CHAR_CREATE                                         = 0x0,
         SMSG_CHAR_CUSTOMIZE                                      = 0x0,
         SMSG_CHAR_DELETE                                         = 0x0,
-        SMSG_CHAR_ENUM                                           = 0x040A, // 5.4.7 17807
+        SMSG_CHAR_ENUM                                           = 0x0,
         SMSG_CHAR_FACTION_CHANGE                                 = 0x0,
         SMSG_CHAR_RENAME                                         = 0x0,
         SMSG_CHAT_IGNORED_ACCOUNT_MUTED                          = 0x0,
@@ -913,7 +913,7 @@ namespace AriDEVParser.Enums
         SMSG_GUILD_PARTY_STATE_RESPONSE                          = 0x0,
         SMSG_GUILD_PERMISSIONS_QUERY_RESULTS                     = 0x0,
         SMSG_GUILD_QUERY_RESPONSE                                = 0x0,
-        SMSG_GUILD_RANK                                          = 0x0, // 0x05AA Something about displaying all the ranks.
+        SMSG_GUILD_RANK                                          = 0x0,
         SMSG_GUILD_RANKS_UPDATE                                  = 0x0,
         SMSG_GUILD_RECIPES                                       = 0x0,
         SMSG_GUILD_RENAMED                                       = 0x0,
