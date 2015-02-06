@@ -20,6 +20,7 @@ namespace AriDEVParser.Loading.Loaders
 
             while (bin.BaseStream.Position != bin.BaseStream.Length)
             {
+                var buildnumber = bin.ReadInt32();
                 var opcode = (Opcode)bin.ReadInt32();
                 var direction = (Direction)bin.ReadChar();
                 var length = bin.ReadInt32();
