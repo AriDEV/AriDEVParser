@@ -2,4 +2,4 @@ AriDEVParser    [![Build status](https://ci.appveyor.com/api/projects/status/d59
 ============
 
 
-World Of Warcraft Packet Parser For Patch 6.0.2(PTR) - Legendary Tool From Past
+World Of Warcraft Packet Parser For Patch 5.4.8
